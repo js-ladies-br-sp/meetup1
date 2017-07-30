@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>JS LADIES</title>
+    </head>
+    <body>
+        <h1>{ Você é a(o) }</h1>
+
+        <form onsubmit="valida(this)">
+            <label for="nomezinho">Nomezinho:</label><br>
+            <input id="nomezinho" type="text"><br>
+
+            <label for="perguntinha">Porque cê quer aprender Javascript?</label><br>
+            <textarea id="perguntinha" cols="30" rows="10"></textarea><br>
+
+            <button type="submit">Validar</button>
+        </form>
+
+        <p id="sobre"></p>
+
+        <script>
+          var sobre = document.getElementById("sobre");
+
+          function valida(formulario) {
+            if (formulario.nomezinho.value == "" || formulario.nomezinho.value == null || formulario.nomezinho.value.length < 3) {
+              alert("Miga, digite o seu nomezinho!");
+              formulario.nomezinho.focus();
+              return false;
+            }
+
+            if (formulario.perguntinha.value == "" || formulario.perguntinha.value == null || formulario.perguntinha.value.length < 3) {
+              alert("Miga, esqueceu de responder a pergutinha...");
+              formulario.perguntinha.focus();
+              return false;
+            }
+
+            alert("Bem vinda(o) " + formulario.nomezinho.value + "!");
+
+            sobre.innerHTML = "A " + formulario.nomezinho.value + " quer aprender Javascript porque " + formulario.perguntinha.value + ".";
+
+            return false;
+          }
+        </script>
+    </body>
+</html>

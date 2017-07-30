@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <title>JS LADIES - Ex4</title>
+    </head>
+    <body>
+        <h1>Qual idade é maior?</h1>
+
+        <form onsubmit="verifica(this)">
+            <label for="idade1">Idade1:</label>
+            <input id="idade1" type="number">
+
+            <br>
+
+            <label for="idade2">Idade2:</label>
+            <input id="idade2" type="number">
+
+            <br>
+
+            <button type="submit">Verificar</button>
+        </form>
+
+        <p id="resposta"></p>
+
+        <script>
+          var resposta = document.getElementById("resposta");
+
+          function verifica(formulario) {
+
+            debugger;
+            if (formulario.idade1.value > formulario.idade2.value) {
+              resposta.innerHTML = "A idade 1 é maior que a 2";
+            } else {
+              resposta.innerHTML = "A idade 2 maior que a 1";
+            }
+
+            return false;
+          }
+        </script>
+    </body>
+</html>
