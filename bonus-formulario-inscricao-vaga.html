@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS LADIES</title>
+    </head>
+    <body>
+        <!-- Exercício adaptado de https://www.revista-programar.info/artigos/validacao-de-formularios-em-javascript -->
+        <form onsubmit="return valida(this);">
+            <h1>Inscrição para Vaga</h1>
+
+            <label for="Nome">Nome: </label>
+            <input id="nome" name="nome" type="text" />
+
+            <br>
+
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="text" />
+
+            <br>
+
+            <label for="masculino">Sexo: </label>
+            <input id="masculino" name="sexo" type="radio" value="Masculino" /> Masculino
+            <input id="feminino" name="sexo" type="radio" value="Feminino" /> Feminino
+
+            <br>
+
+            <label for="profissao">Profissão: </label>
+            <select id="profissao" name="profissao">
+                <option value="">Selecione o cargo</option>
+                <option value="Programador">Programador</option>
+                <option value="Designer">Designer</option>
+                <option value="Tester">Tester</option>
+                <option value="Todas">Todas</option>
+            </select>
+
+            <br>
+
+            <label for="sobre">Sobre: </label>
+
+            <br>
+
+            <textarea id="sobre" name="sobre" cols="30" rows="10"></textarea>
+
+            <br>
+
+            <button type="submit">Enviar</button>
+        </form>
+
+        <script>
+            function valida(formulario) {
+                // valida se o nome está vazio ou tem menos que 3 letras
+                if (formulario.nome.value == "" || formulario.nome.value == null || formulario.nome.value.length < 3) {
+                    alert("Por favor, preencha seu nome.");
+                    formulario.nome.focus();
+                    return false;
+                }
+
+                // valida se o email está vazio ou sem "@" ou sem "."
+                if (formulario.email.value == "" || formulario.email.value == null || formulario.email.value.indexOf("@") == -1 || formulario.email.value.indexOf(".") == -1) {
+                    alert("Por favor, preencha um e-mail válido.");
+                    formulario.email.focus();
+                    return false;
+                }
+
+                // valida se nenhum sexo foi checado
+                var sexo = false;
+
+                for (var contador = 0; contador < formulario.sexo.length; contador++) {
+                    if (formulario.sexo[contador].checked) {
+                        sexo = formulario.sexo[contador].value;
+                    }
+                }
+
+                if (sexo == "" || sexo == null) {
+                    alert("Qual o seu sexo?");
+                    formulario.sexo[0].focus();
+                    return false;
+                }
+
+
+                // valida se não escolheu nenhuma profissão
+                if(formulario.profissao.value == "" || formulario.profissao.value == "Todas") {
+                    alert("No momento, precisamos de especialistas nas três áreas indicadas.");
+                    formulario.profissao.focus();
+                    return false;
+                }
+
+                // valida se não escreveu sobre si
+                if(formulario.sobre.value == "" || formulario.sobre.value == null) {
+                    alert("Por favor, conte-nos um pouco sobre si.");
+                    formulario.sobre.focus();
+                    return false;
+                }
+
+                var confirmado = confirm(
+                    "Seus dados estão corretos?" + "\n" +
+                    "Nome: " + formulario.nome.value + "\n" +
+                    "Email:" + formulario.email.value + "\n" +
+                    "Sexo: " + sexo + "\n" +
+                    "Profissão: " + formulario.profissao.value + "\n" +
+                    "Sobre: " + formulario.sobre.value
+                );
+
+                if (confirmado) {
+                  alert("Dados salvos com sucesso!");
+                }
+
+                return false;
+            }
+        </script>
+    </body>
+</html>

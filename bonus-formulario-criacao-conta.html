@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>JS LADIES</title>
+    </head>
+    <body>
+        <!-- Exercício adaptado de http://rafaelcouto.com.br/validando-formularios-com-javascript/ -->
+        <form onsubmit="return valida(this);">
+            <h1>Crie uma conta</h1>
+
+            <label for="Nome">Nome: </label>
+            <input id="nome" name="nome" type="text" />
+
+            <br>
+
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="text" />
+
+            <br>
+
+            <label for="senha">Senha: </label>
+            <input id="senha" name="senha" type="password">
+
+            <br>
+
+            <label for="repetirSenha">Repetir senha: </label>
+            <input id="repetirSenha" name="repetirSenha" type="password">
+
+            <br>
+
+            <button type="submit">Salvar</button>
+        </form>
+
+        <script>
+            function valida(formulario) {
+                // valida se o nome está vazio ou tem menos que 5 letras
+                if (formulario.nome.value == "" || formulario.nome.value == null || formulario.nome.value.length < 5) {
+                    alert("Digite seu nome completo");
+                    formulario.nome.focus();
+                    return false;
+                }
+
+                // valida se o email está vazio ou sem "@" ou sem "."
+                if (formulario.email.value == "" || formulario.email.value == null || formulario.email.value.indexOf("@") == -1 || formulario.email.value.indexOf(".") == -1) {
+                    alert("Digite um e-mail válido.");
+                    formulario.email.focus();
+                    return false;
+                }
+
+                // valida se preencheu uma senha
+                if(formulario.senha.value == "" || formulario.senha.value == "Todas") {
+                    alert("Qual será a sua senha?");
+                    formulario.senha.focus();
+                    return false;
+                }
+
+                // valida se repetiu a senha
+                if(formulario.repetirSenha.value == "" || formulario.repetirSenha.value == null) {
+                    alert("Repita a senha digitada acima.");
+                    formulario.repetirSenha.focus();
+                    return false;
+                }
+
+                // valida se a senha não foi repetida corretamente
+                if (formulario.senha.value != formulario.repetirSenha.value) {
+                    alert('As senhas estão diferentes!');
+                    formulario.senha.focus();
+                    return false;
+                }
+
+                return false;
+            }
+        </script>
+    </body>
+</html>

@@ -5,14 +5,14 @@
         <title>JS LADIES</title>
     </head>
     <body>
-        <h1>{ Você é a(o) }</h1>
+        <h1>Você é a(o)?</h1>
 
-        <form onsubmit="valida(this)">
+        <form onsubmit="return valida(this)">
             <label for="nomezinho">Nomezinho:</label><br>
-            <input id="nomezinho" type="text"><br>
+            <input id="nomezinho" name="nomezinho" type="text"><br>
 
             <label for="perguntinha">Porque cê quer aprender Javascript?</label><br>
-            <textarea id="perguntinha" cols="30" rows="10"></textarea><br>
+            <textarea id="perguntinha" name="perguntinha" cols="30" rows="10"></textarea><br>
 
             <button type="submit">Validar</button>
         </form>
@@ -30,7 +30,7 @@
             }
 
             if (formulario.perguntinha.value == "" || formulario.perguntinha.value == null || formulario.perguntinha.value.length < 3) {
-              alert("Miga, esqueceu de responder a pergutinha...");
+              alert("Miga, esqueceu de responder a perguntinha...");
               formulario.perguntinha.focus();
               return false;
             }
